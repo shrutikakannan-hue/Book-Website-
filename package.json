@@ -1,0 +1,13 @@
+{
+  "name": "my-projects-vscode",
+  "version": "1.0.0",
+  "description": "A modern, fast, and feature-rich web application for discovering and reading free public domain and open-access books.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Shrutika N",
+  "license": "ISC",
+  "type": "commonjs"
+}

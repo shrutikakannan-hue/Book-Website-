@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookFlow - Free Online Books & Reader • Made by Shrutika N</title>
+  <meta name="author" content="Shrutika N">
+  <meta name="description" content="Discover, read, and listen to timeless classic books online for free. Created by Shrutika N for fellow book lovers. Features interactive reading, customizable typography, text-to-speech audio narration, and offline reading.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/reader.css">
+</head>
+<body>
+  <div class="app-wrapper">
+
+    <!-- Top Sticky Header -->
+    <header class="app-header">
+      <div class="container header-content">
+        <!-- Brand Logo -->
+        <a href="#" class="brand-logo" onclick="app.switchTab('explore'); return false;">
+          <div class="logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-name">BookFlow</span>
+            <span class="brand-author">by Shrutika N</span>
+          </div>
+        </a>
+
+        <!-- Main Navigation Tabs -->
+        <nav class="nav-tabs" aria-label="Main Navigation">
+          <button class="nav-tab-btn active" data-tab="explore">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <span>Curated Library</span>
+          </button>
+          <button class="nav-tab-btn" data-tab="my-library">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+            <span>My Library</span>
+          </button>
+          <button class="nav-tab-btn" data-tab="online">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            <span>Explore 70k+ Online</span>
+          </button>
+          <button class="nav-tab-btn" data-tab="notes">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+            <span>Bookmarks & Notes</span>
+          </button>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <a href="#creator-note" class="creator-header-chip" title="A note from Shrutika N">
+            <span class="chip-heart">💖</span>
+            <span>By Shrutika N</span>
+          </a>
+          <button class="icon-button" id="app-theme-toggle" title="Toggle Dark/Light Mode" aria-label="Toggle theme">
+            <!-- Icon populated by JS -->
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container" style="flex: 1; padding-top: 1.5rem;">
+
+      <!-- ================================================================= -->
+      <!-- TAB 1: CURATED CLASSICS & EXPLORE -->
+      <!-- ================================================================= -->
+      <section id="tab-explore" class="tab-pane active">
+        <!-- Hero Header -->
+        <div class="hero-section">
+          <div class="hero-badge">✨ 100% Free & Open Access Books • Made by Shrutika N</div>
+          <h1 class="hero-title">Immerse Yourself in <span class="gradient-text">World Literature</span></h1>
+          <p class="hero-subtitle">Read timeless masterpieces with a distraction-free reader, speech narration, and offline reading support.</p>
+
+          <!-- Creator's Note Banner -->
+          <div class="creator-hero-banner">
+            <div class="creator-badge-label">
+              <span class="badge-icon">💖</span>
+              <span>Note from the Creator • Made by <strong>Shrutika N</strong></span>
+            </div>
+            <p class="creator-hero-quote">
+              “I am an avid book reader and books are hella expensive nowadays. So I kinda wanted to create a website where everyone can read their fav books whenever they wanna!”
+            </p>
+          </div>
+
+          <div class="hero-stats-row">
+            <div class="hero-stat-card">
+              <span class="stat-icon">📖</span>
+              <div>
+                <div class="stat-val" id="stat-reading-count">0</div>
+                <div class="stat-lbl">Currently Reading</div>
+              </div>
+            </div>
+            <div class="hero-stat-card">
+              <span class="stat-icon">🏆</span>
+              <div>
+                <div class="stat-val" id="stat-completed-count">0</div>
+                <div class="stat-lbl">Completed Books</div>
+              </div>
+            </div>
+            <div class="hero-stat-card">
+              <span class="stat-icon">❤️</span>
+              <div>
+                <div class="stat-val" id="stat-favorites-count">0</div>
+                <div class="stat-lbl">Favorite Titles</div>
+              </div>
+            </div>
+            <div class="hero-stat-card">
+              <span class="stat-icon">🔖</span>
+              <div>
+                <div class="stat-val" id="stat-bookmarks-count">0</div>
+                <div class="stat-lbl">Saved Notes</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search & Category Filters -->
+        <div class="filter-toolbar">
+          <div class="search-row">
+            <div class="search-input-wrap">
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="search-input" class="search-input" placeholder="Search by title, author, genre or keyword...">
+              <button id="clear-search-btn" class="clear-search-btn" title="Clear Search">✕</button>
+            </div>
+
+            <div class="sort-wrap">
+              <label for="sort-select" class="sort-label">Sort by:</label>
+              <select id="sort-select" class="sort-select">
+                <option value="popular">Most Popular</option>
+                <option value="rating">Highest Rated</option>
+                <option value="year-newest">Year (Newest)</option>
+                <option value="year-oldest">Year (Oldest)</option>
+                <option value="title-az">Title (A-Z)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Genre Filter Pills -->
+          <div class="genre-pills-row" id="genre-filters">
+            <!-- Populated dynamically by JS -->
+          </div>
+        </div>
+
+        <!-- Featured Carousel / Showcase -->
+        <section class="section-container" style="display: none;">
+          <div class="section-header">
+            <h2 class="section-title">🌟 Featured Masterpieces</h2>
+          </div>
+          <div class="featured-grid" id="featured-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- All Books Catalog -->
+        <section class="section-container">
+          <div class="section-header">
+            <h2 class="section-title">
+              📚 Browse All Books
+              <span class="count-badge" id="explore-books-count">12 books</span>
+            </h2>
+          </div>
+          <div class="books-grid" id="all-books-grid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- TAB 2: MY PERSONAL LIBRARY -->
+      <!-- ================================================================= -->
+      <section id="tab-my-library" class="tab-pane">
+        <div class="section-header" style="margin-top: 1.5rem;">
+          <div>
+            <h2 class="section-title">📖 My Personal Library</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Track your currently reading books, want-to-read list, and favorites.</p>
+          </div>
+          <span class="count-badge" id="library-books-count">0 books</span>
+        </div>
+
+        <!-- Library Filter Bar -->
+        <div class="library-filter-bar">
+          <button class="library-filter-pill active" data-filter="all">All Saved</button>
+          <button class="library-filter-pill" data-filter="reading">📖 Currently Reading</button>
+          <button class="library-filter-pill" data-filter="want_to_read">📌 Want to Read</button>
+          <button class="library-filter-pill" data-filter="completed">✅ Finished</button>
+          <button class="library-filter-pill" data-filter="favorites">❤️ Favorites</button>
+        </div>
+
+        <!-- Library Grid -->
+        <div class="books-grid" id="library-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- TAB 3: EXPLORE 70,000+ ONLINE BOOKS -->
+      <!-- ================================================================= -->
+      <section id="tab-online" class="tab-pane">
+        <div class="section-header" style="margin-top: 1.5rem;">
+          <div>
+            <h2 class="section-title">🌐 Live Project Gutenberg Catalog</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">Search and discover over 70,000 free digital public domain books directly from Project Gutenberg.</p>
+          </div>
+        </div>
+
+        <div class="filter-toolbar">
+          <div class="search-row">
+            <div class="search-input-wrap">
+              <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <input type="text" id="online-search-input" class="search-input" placeholder="Search Gutenberg (e.g. 'Jane Austen', 'Mark Twain', 'Philosophy', 'Science')...">
+            </div>
+            <button id="online-search-btn" class="btn btn-primary">Search Catalog 🔍</button>
+          </div>
+          <div id="online-loading" style="display: none; text-align: center; padding: 1rem; color: var(--accent-primary); font-weight: 600;">
+            ⏳ Searching 70,000+ public domain titles...
+          </div>
+        </div>
+
+        <div class="books-grid" id="online-grid">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- ================================================================= -->
+      <!-- TAB 4: BOOKMARKS & PERSONAL NOTES -->
+      <!-- ================================================================= -->
+      <section id="tab-notes" class="tab-pane">
+        <div class="section-header" style="margin-top: 1.5rem;">
+          <div>
+            <h2 class="section-title">✍️ My Highlights & Bookmarks</h2>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">All your saved quotes, annotations, and bookmarks collected across your reading journey.</p>
+          </div>
+        </div>
+
+        <div id="all-notes-container">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+    </main>
+
+    <!-- App Footer -->
+    <footer class="app-footer" id="creator-note">
+      <div class="container footer-content">
+        <!-- Creator Card -->
+        <div class="footer-creator-card">
+          <div class="footer-creator-top">
+            <div class="creator-avatar">
+              <span>📚</span>
+            </div>
+            <div class="creator-info">
+              <h3 class="creator-heading">Made with ❤️ by Shrutika N</h3>
+              <p class="creator-tagline">Avid Book Reader & BookFlow Creator</p>
+            </div>
+          </div>
+          <div class="creator-bubble">
+            <svg class="quote-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+            </svg>
+            <p class="creator-message-text">
+              “I am an avid book reader and books are hella expensive nowadays. So I kinda wanted to create a website where everyone can read their fav books whenever they wanna.”
+            </p>
+          </div>
+        </div>
+
+        <div class="footer-bottom-row">
+          <div>
+            <strong>BookFlow</strong> &copy; 2025 • Made with ❤️ by <strong>Shrutika N</strong>. Free & Open Access Library.
+          </div>
+          <div class="footer-sources">
+            Sources: <a href="https://www.gutenberg.org" target="_blank" rel="noopener">Project Gutenberg</a> &bull; <a href="https://openlibrary.org" target="_blank" rel="noopener">Open Library</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- BOOK DETAILS MODAL -->
+  <!-- ================================================================= -->
+  <div id="book-details-modal" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-dialog">
+      <button id="close-details-modal" class="modal-close-btn" title="Close" aria-label="Close dialog">✕</button>
+      <div id="details-modal-body">
+        <!-- Injected dynamically by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- FULLSCREEN INTERACTIVE BOOK READER MODAL -->
+  <!-- ================================================================= -->
+  <div id="reader-modal" class="reader-modal theme-dark" role="dialog" aria-label="Book Reader">
+    <!-- Top Reading Progress Indicator -->
+    <div class="reader-progress-track">
+      <div id="reader-progress-bar" class="reader-progress-fill"></div>
+    </div>
+
+    <!-- Main Reader Header -->
+    <header class="reader-header">
+      <div class="reader-header-left">
+        <button id="reader-close-btn" class="reader-tool-btn" title="Exit to Library (Esc)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          <span>Library</span>
+        </button>
+
+        <div class="reader-title-info">
+          <span id="reader-book-title" class="reader-book-name">Book Title</span>
+          <span id="reader-chapter-title" class="reader-chapter-name">Chapter I</span>
+        </div>
+      </div>
+
+      <div class="reader-header-right">
+        <!-- Text-to-Speech Playback -->
+        <button id="reader-tts-play" class="reader-tool-btn" title="Listen to Chapter (Text-to-Speech)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          <span>Listen</span>
+        </button>
+        <button id="reader-tts-stop" class="reader-icon-btn" title="Stop Audio" style="display: inline-flex;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+        </button>
+
+        <!-- Bookmark Current Spot -->
+        <button id="reader-bookmark-btn" class="reader-tool-btn" title="Bookmark this Chapter">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
+          <span>Bookmark</span>
+        </button>
+
+        <!-- Table of Contents Toggle -->
+        <button id="reader-toc-toggle" class="reader-tool-btn" title="Table of Contents">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+          <span>Chapters</span>
+        </button>
+
+        <!-- Notes Drawer Toggle -->
+        <button id="reader-notes-toggle" class="reader-icon-btn" title="View Bookmarks & Notes">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        </button>
+
+        <!-- Fullscreen Mode Toggle -->
+        <button id="reader-fullscreen-btn" class="reader-icon-btn" title="Toggle Fullscreen (F)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Secondary Reader Customization Toolbar -->
+    <div class="reader-controls-bar">
+      <!-- Theme Selection -->
+      <div class="settings-group">
+        <span class="settings-label">Theme:</span>
+        <div class="reader-theme-pills">
+          <button class="reader-theme-btn active" data-theme="dark" title="Dark Mode"></button>
+          <button class="reader-theme-btn" data-theme="light" title="Light Mode"></button>
+          <button class="reader-theme-btn" data-theme="sepia" title="Sepia Retro"></button>
+          <button class="reader-theme-btn" data-theme="nord" title="Nord Polar"></button>
+          <button class="reader-theme-btn" data-theme="emerald" title="Emerald Forest"></button>
+        </div>
+      </div>
+
+      <!-- Typography Family -->
+      <div class="settings-group">
+        <span class="settings-label">Font:</span>
+        <select id="reader-font-select" class="tts-select">
+          <option value="merriweather">Merriweather (Serif)</option>
+          <option value="lora">Lora (Classic Serif)</option>
+          <option value="inter">Inter (Modern Sans)</option>
+          <option value="fira">Fira (Monospace)</option>
+          <option value="opendyslexic">OpenDyslexic (Accessible)</option>
+        </select>
+      </div>
+
+      <!-- Font Size Adjuster -->
+      <div class="settings-group">
+        <span class="settings-label">Size:</span>
+        <div class="font-stepper">
+          <button id="font-size-dec" title="Decrease font size">-</button>
+          <span id="font-size-display">18px</span>
+          <button id="font-size-inc" title="Increase font size">+</button>
+        </div>
+      </div>
+
+      <!-- Chapter Dropdown Quick Jump -->
+      <div class="settings-group">
+        <span class="settings-label">Jump:</span>
+        <select id="reader-chapter-select" class="tts-select">
+          <!-- Populated by JS -->
+        </select>
+      </div>
+
+      <!-- Speech Voice & Speed -->
+      <div class="settings-group tts-controls-group">
+        <span class="settings-label">Speed:</span>
+        <select id="reader-tts-speed" class="tts-select">
+          <option value="0.8">0.8x</option>
+          <option value="1.0" selected>1.0x</option>
+          <option value="1.2">1.2x</option>
+          <option value="1.5">1.5x</option>
+        </select>
+        <select id="reader-tts-voice" class="tts-select" style="max-width: 130px;">
+          <!-- Loaded dynamically from SpeechSynthesis -->
+        </select>
+        <span id="reader-tts-status" style="font-size: 0.75rem; color: var(--reader-text-muted);"></span>
+      </div>
+    </div>
+
+    <!-- Table of Contents Slide Drawer -->
+    <aside id="reader-toc-drawer" class="reader-drawer" aria-label="Table of Contents">
+      <div class="drawer-header">
+        <h3>📖 Table of Contents</h3>
+        <button class="drawer-close-btn" title="Close Drawer">✕</button>
+      </div>
+      <div class="drawer-body" id="reader-toc-list">
+        <!-- Populated by JS -->
+      </div>
+    </aside>
+
+    <!-- Notes & Bookmarks Slide Drawer -->
+    <aside id="reader-notes-drawer" class="reader-drawer drawer-right" aria-label="Reader Notes">
+      <div class="drawer-header">
+        <h3>🔖 Bookmarks & Notes</h3>
+        <button class="drawer-close-btn" title="Close Drawer">✕</button>
+      </div>
+      <div class="drawer-body" id="reader-notes-list">
+        <!-- Populated by JS -->
+      </div>
+    </aside>
+
+    <!-- Reader Scrollable Content Body -->
+    <main id="reader-content-wrap" class="reader-content-scroll">
+      <div class="reader-container">
+        <article id="reader-body" class="reader-body">
+          <!-- Populated with chapter content -->
+        </article>
+      </div>
+    </main>
+
+    <!-- Reader Bottom Chapter Stepper Footer -->
+    <footer class="reader-footer">
+      <button id="reader-prev-chapter" class="reader-nav-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <span>Previous Chapter</span>
+      </button>
+
+      <span id="reader-progress-text" class="reader-progress-info">Chapter 1 of 3</span>
+
+      <button id="reader-next-chapter" class="reader-nav-btn">
+        <span>Next Chapter</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </button>
+    </footer>
+
+    <!-- Text Highlight / Note Popover -->
+    <div id="reader-selection-popover" class="selection-popover">
+      <button id="popover-add-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+        <span>Add Note</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/books-data.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/reader.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

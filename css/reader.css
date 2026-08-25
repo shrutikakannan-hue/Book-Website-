@@ -1,0 +1,580 @@
+/* ==========================================================================
+   BookFlow - Interactive Reader Stylesheet
+   Themes: Light, Dark, Sepia, Nord, Emerald
+   ========================================================================== */
+
+.reader-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background-color: #121826;
+  color: #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.reader-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ==========================================================================
+   Reader Themes
+   ========================================================================== */
+
+/* Dark Theme (Default) */
+.reader-modal.theme-dark {
+  --reader-bg: #0f172a;
+  --reader-surface: #1e293b;
+  --reader-text: #f1f5f9;
+  --reader-text-muted: #94a3b8;
+  --reader-border: rgba(255, 255, 255, 0.1);
+  --reader-accent: #6366f1;
+}
+
+/* Light Theme */
+.reader-modal.theme-light {
+  --reader-bg: #f8fafc;
+  --reader-surface: #ffffff;
+  --reader-text: #1e293b;
+  --reader-text-muted: #64748b;
+  --reader-border: rgba(0, 0, 0, 0.1);
+  --reader-accent: #4f46e5;
+}
+
+/* Sepia Theme */
+.reader-modal.theme-sepia {
+  --reader-bg: #f7efe1;
+  --reader-surface: #eee3ce;
+  --reader-text: #433422;
+  --reader-text-muted: #7f6e5c;
+  --reader-border: rgba(67, 52, 34, 0.15);
+  --reader-accent: #b45309;
+}
+
+/* Nord Theme */
+.reader-modal.theme-nord {
+  --reader-bg: #2e3440;
+  --reader-surface: #3b4252;
+  --reader-text: #eceff4;
+  --reader-text-muted: #d8dee9;
+  --reader-border: rgba(236, 239, 244, 0.12);
+  --reader-accent: #88c0d0;
+}
+
+/* Emerald Theme */
+.reader-modal.theme-emerald {
+  --reader-bg: #064e3b;
+  --reader-surface: #065f46;
+  --reader-text: #ecfdf5;
+  --reader-text-muted: #a7f3d0;
+  --reader-border: rgba(236, 253, 245, 0.12);
+  --reader-accent: #34d399;
+}
+
+.reader-modal {
+  background-color: var(--reader-bg);
+  color: var(--reader-text);
+}
+
+/* Progress Bar */
+.reader-progress-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--reader-border);
+  z-index: 1010;
+}
+
+.reader-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--reader-accent);
+  transition: width 0.15s ease-out;
+}
+
+/* ==========================================================================
+   Reader Header & Toolbar
+   ========================================================================== */
+
+.reader-header {
+  height: 60px;
+  background-color: var(--reader-surface);
+  border-bottom: 1px solid var(--reader-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  z-index: 100;
+  gap: 1rem;
+}
+
+.reader-header-left, .reader-header-right {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.reader-title-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.reader-book-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.reader-chapter-name {
+  font-size: 0.75rem;
+  color: var(--reader-text-muted);
+}
+
+.reader-tool-btn {
+  background: transparent;
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text);
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reader-tool-btn:hover {
+  background-color: var(--reader-border);
+}
+
+.reader-tool-btn.btn-accent {
+  background-color: var(--reader-accent);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.reader-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reader-icon-btn:hover {
+  background-color: var(--reader-border);
+}
+
+/* Settings Dropdown / Controls Bar */
+.reader-controls-bar {
+  background-color: var(--reader-surface);
+  border-bottom: 1px solid var(--reader-border);
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.85rem;
+  flex-wrap: wrap;
+}
+
+.settings-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.settings-label {
+  font-size: 0.75rem;
+  color: var(--reader-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Themes Palette Selector */
+.reader-theme-pills {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.reader-theme-btn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.reader-theme-btn:hover {
+  transform: scale(1.15);
+}
+
+.reader-theme-btn.active {
+  border-color: var(--reader-accent);
+  transform: scale(1.15);
+}
+
+.reader-theme-btn[data-theme="dark"] { background-color: #0f172a; }
+.reader-theme-btn[data-theme="light"] { background-color: #f8fafc; border: 1px solid #cbd5e1; }
+.reader-theme-btn[data-theme="sepia"] { background-color: #f7efe1; border: 1px solid #d7c2a7; }
+.reader-theme-btn[data-theme="nord"] { background-color: #2e3440; }
+.reader-theme-btn[data-theme="emerald"] { background-color: #064e3b; }
+
+/* Font Size Controls */
+.font-stepper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--reader-bg);
+  border: 1px solid var(--reader-border);
+  border-radius: var(--radius-sm);
+  padding: 0.15rem 0.35rem;
+}
+
+.font-stepper button {
+  background: none;
+  border: none;
+  color: var(--reader-text);
+  font-weight: 700;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.font-stepper button:hover {
+  background: var(--reader-border);
+}
+
+.font-stepper span {
+  font-size: 0.75rem;
+  font-weight: 600;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* TTS Controls */
+.tts-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tts-select {
+  background: var(--reader-bg);
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  outline: none;
+}
+
+/* ==========================================================================
+   Reader Main Content Area
+   ========================================================================== */
+
+.reader-content-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 3rem 1.5rem 6rem;
+  scroll-behavior: smooth;
+}
+
+.reader-container {
+  max-width: 760px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.reader-body {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--reader-text);
+  transition: font-size 0.2s;
+}
+
+.reader-body p {
+  margin-bottom: 1.6em;
+  text-indent: 1.5em;
+}
+
+.reader-body p:first-of-type {
+  text-indent: 0;
+}
+
+.reader-body p:first-of-type::first-letter {
+  font-size: 2.75em;
+  float: left;
+  line-height: 0.85;
+  margin-right: 0.15em;
+  font-family: var(--font-serif);
+  color: var(--reader-accent);
+}
+
+.reader-paragraph {
+  position: relative;
+  transition: background-color 0.2s;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+.reader-paragraph:hover {
+  background-color: rgba(99, 102, 241, 0.05);
+}
+
+/* ==========================================================================
+   Reader Bottom Footer Nav
+   ========================================================================== */
+
+.reader-footer {
+  height: 56px;
+  background-color: var(--reader-surface);
+  border-top: 1px solid var(--reader-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  z-index: 100;
+}
+
+.reader-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--reader-bg);
+  border: 1px solid var(--reader-border);
+  color: var(--reader-text);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reader-nav-btn:hover:not(:disabled) {
+  background: var(--reader-accent);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.reader-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.reader-progress-info {
+  font-size: 0.85rem;
+  color: var(--reader-text-muted);
+}
+
+/* ==========================================================================
+   Slide-in Drawers (TOC & Notes)
+   ========================================================================== */
+
+.reader-drawer {
+  position: absolute;
+  top: 60px;
+  bottom: 56px;
+  width: 320px;
+  background-color: var(--reader-surface);
+  border-right: 1px solid var(--reader-border);
+  z-index: 200;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+}
+
+.reader-drawer.open {
+  transform: translateX(0);
+}
+
+.reader-drawer.drawer-right {
+  right: 0;
+  left: auto;
+  border-right: none;
+  border-left: 1px solid var(--reader-border);
+  transform: translateX(100%);
+}
+
+.reader-drawer.drawer-right.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--reader-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.drawer-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.drawer-close-btn {
+  background: none;
+  border: none;
+  color: var(--reader-text-muted);
+  cursor: pointer;
+  font-size: 1.1rem;
+}
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.15s;
+  margin-bottom: 0.25rem;
+}
+
+.toc-item:hover {
+  background-color: var(--reader-bg);
+}
+
+.toc-item.active {
+  background-color: var(--reader-accent);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.toc-num {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.drawer-section-title {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--reader-text-muted);
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.drawer-note-card {
+  background: var(--reader-bg);
+  border: 1px solid var(--reader-border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.8rem;
+}
+
+.drawer-note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+
+.drawer-note-snippet {
+  color: var(--reader-text-muted);
+  font-style: italic;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.drawer-note-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7rem;
+}
+
+.jump-btn {
+  background: none;
+  border: none;
+  color: var(--reader-accent);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.icon-btn-xs {
+  background: none;
+  border: none;
+  color: var(--reader-text-muted);
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.icon-btn-xs:hover {
+  color: var(--danger);
+}
+
+/* ==========================================================================
+   Selection Popover Tooltip
+   ========================================================================== */
+
+.selection-popover {
+  position: absolute;
+  display: none;
+  background: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  padding: 0.35rem;
+  gap: 0.35rem;
+  box-shadow: var(--shadow-md);
+  z-index: 1050;
+}
+
+.selection-popover button {
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.selection-popover button:hover {
+  background: var(--accent-primary);
+}
+
+@media (max-width: 640px) {
+  .reader-controls-bar {
+    display: none;
+  }
+  .reader-header-right span {
+    display: none;
+  }
+}
