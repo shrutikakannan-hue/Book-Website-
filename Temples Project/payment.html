@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TempleTrip - Payment Details</title>
+    <link rel="preconnect" href="https://upload.wikimedia.org" />
+    <link rel="preconnect" href="https://media.newindianexpress.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="TempleTrip home">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>TempleTrip</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html#book">Modify Booking</a>
+        <a href="#payment-modes">Payment Modes</a>
+        <a href="#traveller-info">Visitor Details</a>
+      </nav>
+      <a class="login-link" href="index.html">Back</a>
+    </header>
+
+    <main class="payment-page">
+      <section class="payment-hero" aria-labelledby="payment-title">
+        <div>
+          <p class="eyebrow">Secure checkout</p>
+          <h1 id="payment-title">Complete your temple ticket booking</h1>
+          <p>
+            Review the selected Tamil Nadu temple ticket, add visitor details,
+            and choose a preferred payment mode.
+          </p>
+        </div>
+      </section>
+
+      <section class="payment-grid" aria-label="Payment information">
+        <div class="checkout-column">
+          <article class="checkout-panel" id="traveller-info">
+            <p class="eyebrow">Visitor details</p>
+            <h2>Primary visitor</h2>
+            <form class="visitor-form">
+              <label class="field" for="visitor-name">
+                <span>Full name</span>
+                <input id="visitor-name" type="text" placeholder="Enter visitor name" />
+              </label>
+              <label class="field" for="visitor-phone">
+                <span>Mobile number</span>
+                <input id="visitor-phone" type="tel" inputmode="numeric" pattern="[0-9]+" placeholder="Enter mobile number" required />
+              </label>
+              <label class="field" for="visitor-email">
+                <span>Email address</span>
+                <input id="visitor-email" type="email" placeholder="Enter email address" required />
+              </label>
+            </form>
+          </article>
+
+          <article class="checkout-panel" id="payment-modes">
+            <p class="eyebrow">Payment modes</p>
+            <h2>Choose how customers can pay</h2>
+            <div class="payment-options">
+              <label class="payment-option">
+                <input type="radio" name="payment-mode" value="upi" checked />
+                <span>
+                  <strong>UPI</strong>
+                  <small>Pay using Google Pay, PhonePe, Paytm, BHIM, or any UPI app.</small>
+                </span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment-mode" value="card" />
+                <span>
+                  <strong>Credit or debit card</strong>
+                  <small>Visa, Mastercard, RuPay, and major bank cards accepted.</small>
+                </span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment-mode" value="netbanking" />
+                <span>
+                  <strong>Net banking</strong>
+                  <small>Use supported Indian banks for direct online payment.</small>
+                </span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment-mode" value="wallet" />
+                <span>
+                  <strong>Wallets</strong>
+                  <small>Pay with supported digital wallets where available.</small>
+                </span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment-mode" value="counter" />
+                <span>
+                  <strong>Pay at counter</strong>
+                  <small>Reserve online and complete payment at the temple counter.</small>
+                </span>
+              </label>
+            </div>
+            <label class="field upi-field" id="upi-field" for="upi-id">
+              <span>UPI ID</span>
+              <input id="upi-id" type="text" inputmode="email" placeholder="yourname@bank" autocomplete="off" />
+              <small class="field-hint">Use the format name@bank, for example devotee@okaxis.</small>
+            </label>
+          </article>
+
+          <article class="checkout-panel">
+            <p class="eyebrow">Important information</p>
+            <h2>Before payment</h2>
+            <ul class="info-list">
+              <li>Carry a valid photo ID matching the visitor name entered here.</li>
+              <li>Arrive 20 minutes before the selected slot for verification.</li>
+              <li>Temple dress code and photography rules must be followed.</li>
+              <li>Refunds and rescheduling are subject to temple-specific rules.</li>
+            </ul>
+          </article>
+        </div>
+
+        <aside class="checkout-summary" aria-labelledby="checkout-summary-title">
+          <p class="eyebrow">Booking summary</p>
+          <h2 id="checkout-summary-title">Ticket details</h2>
+          <img id="payment-image" src="" alt="" />
+          <div class="summary-line">
+            <span>Temple</span>
+            <strong id="payment-temple">Temple</strong>
+          </div>
+          <div class="summary-line">
+            <span>Date</span>
+            <strong id="payment-date">Date</strong>
+          </div>
+          <div class="summary-line">
+            <span>Slot</span>
+            <strong id="payment-slot">Slot</strong>
+          </div>
+          <div class="summary-line">
+            <span>Visitors</span>
+            <strong id="payment-visitors">Visitors</strong>
+          </div>
+          <div class="summary-line">
+            <span>Ticket type</span>
+            <strong id="payment-type">Ticket type</strong>
+          </div>
+          <div class="summary-line">
+            <span>Plan</span>
+            <strong id="payment-plan">Standard</strong>
+          </div>
+          <div class="fare-box">
+            <span>Total payable</span>
+            <strong id="payment-total">Rs 0</strong>
+          </div>
+          <button class="pay-button" type="button" id="pay-now-button">Pay now</button>
+          <p class="secure-note">Your booking confirmation will be prepared for the email address entered above.</p>
+          <p class="confirmation-message" id="payment-message" role="status"></p>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>TempleTrip</span>
+      <span>Payment details page for Tamil Nadu temple bookings.</span>
+    </footer>
+
+    <script src="payment.js"></script>
+  </body>
+</html>

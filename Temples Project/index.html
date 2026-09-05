@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TempleTrip - Temple Ticket Booking</title>
+    <link rel="preconnect" href="https://upload.wikimedia.org" />
+    <link rel="preconnect" href="https://media.newindianexpress.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="chat-overlay hidden" id="ai-chat" role="dialog" aria-modal="true" aria-labelledby="chat-title" aria-hidden="true">
+      <div class="chatbox">
+        <div class="chat-header">
+          <div>
+            <p class="eyebrow">AI booking assistant</p>
+            <h2 id="chat-title">Let me help with your temple visit</h2>
+          </div>
+          <div class="chat-header-actions">
+            <span class="assistant-dot" aria-hidden="true"></span>
+            <button class="chat-close" id="chat-close" type="button" aria-label="Close AI booking assistant" title="Close assistant">&times;</button>
+          </div>
+        </div>
+
+        <div class="chat-thread" aria-live="polite">
+          <div class="chat-message bot">
+            Welcome to TempleTrip. I will collect a few details first, then show tickets for your selected Tamil Nadu temple.
+          </div>
+          <div class="chat-message bot">
+            Please enter your details and choose the temple you want to visit.
+          </div>
+        </div>
+
+        <div class="chat-prompts" aria-label="Suggested questions">
+          <button type="button" data-chat-prompt="Which temple is best for a first visit?">Best for a first visit</button>
+          <button type="button" data-chat-prompt="Show me a temple in Madurai">Temple in Madurai</button>
+          <button type="button" data-chat-prompt="Help me plan my visit">Help me plan</button>
+        </div>
+
+        <form class="chat-form" id="chat-form">
+          <label class="field" for="chat-name">
+            <span>Full name</span>
+            <input id="chat-name" name="customerName" type="text" placeholder="Enter your name" required />
+          </label>
+          <label class="field" for="chat-phone">
+            <span>Mobile number</span>
+            <input
+              id="chat-phone"
+              name="customerPhone"
+              type="tel"
+              inputmode="numeric"
+              pattern="[0-9]+"
+              placeholder="Enter mobile number"
+              aria-describedby="chat-status"
+              required
+            />
+          </label>
+          <label class="field" for="chat-email">
+            <span>Email address</span>
+            <input id="chat-email" name="customerEmail" type="email" placeholder="Enter email address" required />
+          </label>
+          <label class="field" for="chat-temple">
+            <span>Mention temple</span>
+            <input
+              id="chat-temple"
+              name="customerTemple"
+              type="text"
+              list="chat-temple-options"
+              placeholder="Type Meenakshi, Rameswaram..."
+              autocomplete="off"
+              required
+            />
+            <datalist id="chat-temple-options"></datalist>
+          </label>
+          <p class="chat-status" id="chat-status" role="status"></p>
+          <button class="chat-submit" type="submit">Show my tickets</button>
+        </form>
+      </div>
+    </section>
+
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="TempleTrip home">
+        <span class="brand-mark" aria-hidden="true">T</span>
+        <span>TempleTrip</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#book">Book Tickets</a>
+        <a href="#temples">Temples</a>
+        <a href="#summary">My Booking</a>
+      </nav>
+      <a class="login-link" href="#summary">Login</a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/7/70/Brihadeeswarar_Temple_Thanjavur.jpg" alt="Brihadeeswarar Temple in Thanjavur" />
+        <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Temple tickets made simple</p>
+          <h1 id="hero-title">Book darshan tickets for Tamil Nadu temples</h1>
+          <p>
+            Search, compare ticket slots, and review your total before booking.
+            This page includes only the Tamil Nadu temples from your selected list.
+          </p>
+          <div class="hero-actions" aria-label="Hero actions">
+            <a class="hero-primary" href="#book">Find a temple slot</a>
+            <a class="hero-secondary" href="#temples">Explore the collection</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-strip" aria-label="TempleTrip service highlights">
+        <div class="trust-item">
+          <strong>5 sacred destinations</strong>
+          <span>Curated across Tamil Nadu</span>
+        </div>
+        <div class="trust-item">
+          <strong>Flexible visit slots</strong>
+          <span>Morning, midday, and evening</span>
+        </div>
+        <div class="trust-item">
+          <strong>Clear pricing</strong>
+          <span>Review your fare before payment</span>
+        </div>
+      </section>
+
+      <section class="booking-shell" id="book" aria-labelledby="booking-title">
+        <div class="booking-tabs" aria-label="Booking type">
+          <button class="booking-tab active" type="button">Darshan</button>
+          <button class="booking-tab" type="button">Guided Visit</button>
+          <button class="booking-tab" type="button">Special Entry</button>
+        </div>
+
+        <form class="search-panel" id="booking-form">
+          <h2 id="booking-title">Search temple tickets</h2>
+
+          <label class="field field-large" for="temple-select">
+            <span>Temple</span>
+            <select id="temple-select" name="temple"></select>
+          </label>
+
+          <label class="field" for="visit-date">
+            <span>Visit date</span>
+            <input id="visit-date" name="date" type="date" />
+          </label>
+
+          <label class="field" for="visitor-count">
+            <span>Visitors</span>
+            <input id="visitor-count" name="visitors" type="number" min="1" max="12" value="2" />
+          </label>
+
+          <label class="field" for="ticket-type">
+            <span>Ticket type</span>
+            <select id="ticket-type" name="ticketType">
+              <option value="standard">Standard Entry</option>
+              <option value="special">Special Entry</option>
+              <option value="guided">Guided Visit</option>
+            </select>
+          </label>
+
+          <button class="search-button" type="submit">Search</button>
+        </form>
+      </section>
+
+      <section class="content-grid" id="temples" aria-label="Temple ticket results">
+        <div class="results-column">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Available tickets</p>
+              <h2>Choose from Tamil Nadu temples</h2>
+            </div>
+            <div class="sort-box">
+              <label for="sort-select">Sort by</label>
+              <select id="sort-select">
+                <option value="recommended">Recommended</option>
+                <option value="priceLow">Price: Low to High</option>
+                <option value="priceHigh">Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="quick-filters" aria-label="Temple city filters">
+            <button class="chip active" type="button" data-filter="all">All Tamil Nadu</button>
+            <button class="chip" type="button" data-filter="Thanjavur">Thanjavur</button>
+            <button class="chip" type="button" data-filter="Madurai">Madurai</button>
+            <button class="chip" type="button" data-filter="Palani">Palani</button>
+            <button class="chip" type="button" data-filter="Tirunelveli">Tirunelveli</button>
+            <button class="chip" type="button" data-filter="Coimbatore">Coimbatore</button>
+          </div>
+
+          <div class="ticket-list" id="ticket-list" aria-live="polite"></div>
+        </div>
+
+        <aside class="summary-card" id="summary" aria-labelledby="summary-title">
+          <p class="eyebrow">My booking</p>
+          <h2 id="summary-title">Review fare</h2>
+          <img id="summary-image" src="" alt="" />
+          <div class="summary-line">
+            <span>Temple</span>
+            <strong id="summary-temple"></strong>
+          </div>
+          <div class="summary-line">
+            <span>Date</span>
+            <strong id="summary-date"></strong>
+          </div>
+          <div class="summary-line">
+            <span>Slot</span>
+            <strong id="summary-slot"></strong>
+          </div>
+          <div class="summary-line">
+            <span>Visitors</span>
+            <strong id="summary-visitors"></strong>
+          </div>
+          <div class="summary-line">
+            <span>Ticket type</span>
+            <strong id="summary-type"></strong>
+          </div>
+          <div class="summary-line">
+            <span>Plan</span>
+            <strong id="summary-plan">Standard</strong>
+          </div>
+          <div class="plan-box" aria-label="Plan selection">
+            <p class="eyebrow">Upgrade</p>
+            <div class="plan-toggle" role="tablist" aria-label="Booking plan options">
+              <button class="plan-option active" type="button" data-plan="standard">Standard</button>
+              <button class="plan-option" type="button" data-plan="plus">Plus + Rs 299</button>
+            </div>
+          </div>
+          <div class="fare-box">
+            <span>Total payable</span>
+            <strong id="summary-total"></strong>
+          </div>
+          <a class="pay-button" id="payment-link" href="payment.html">Continue to payment details</a>
+          <p class="secure-note">You will be directed to a separate payment information page.</p>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>TempleTrip</span>
+      <span>Static demo website for temple ticket booking.</span>
+    </footer>
+
+    <button class="robot-launcher" id="robot-launcher" type="button" aria-label="Open AI booking assistant" aria-controls="ai-chat" aria-expanded="false">
+      <span class="robot-avatar" aria-hidden="true">
+        <span class="robot-antenna"></span>
+        <span class="robot-face">
+          <span class="robot-eye"></span>
+          <span class="robot-eye"></span>
+          <span class="robot-mouth"></span>
+        </span>
+      </span>
+      <span class="robot-label">Ask TempleTrip AI</span>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="sky4" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#d5ecff"/>
+      <stop offset="100%" stop-color="#fef6e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky4)"/>
+  <circle cx="1000" cy="120" r="58" fill="#ffe49d"/>
+  <path d="M0 600 L140 520 L280 600 L420 470 L545 600 L680 500 L860 600 L1200 520 L1200 800 L0 800 Z" fill="#8fb29c" opacity="0.75"/>
+  <rect x="260" y="280" width="680" height="330" fill="#fffaf0"/>
+  <rect x="305" y="300" width="90" height="230" fill="#d2b086"/>
+  <rect x="805" y="300" width="90" height="230" fill="#d2b086"/>
+  <rect x="400" y="200" width="400" height="210" fill="#b9773b"/>
+  <rect x="430" y="150" width="340" height="70" fill="#8d562d"/>
+  <rect x="515" y="255" width="170" height="160" fill="#ebd4a2"/>
+  <rect x="545" y="330" width="110" height="100" fill="#a75b2d"/>
+  <rect x="430" y="420" width="340" height="120" fill="#efcf8f"/>
+  <rect x="0" y="620" width="1200" height="180" fill="#d1a46b" opacity="0.8"/>
+  <text x="600" y="700" text-anchor="middle" font-size="42" font-family="Segoe UI, sans-serif" fill="#4c2f15" font-weight="700">PAPANASAM TEMPLE</text>
+</svg>

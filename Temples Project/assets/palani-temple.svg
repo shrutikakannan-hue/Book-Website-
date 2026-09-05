@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f8d9a0"/>
+      <stop offset="100%" stop-color="#fff3d8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#sky)"/>
+  <circle cx="930" cy="120" r="58" fill="#ffd86b" opacity="0.9"/>
+  <path d="M0 520 L180 410 L330 520 L470 370 L620 520 L820 360 L1200 520 L1200 800 L0 800 Z" fill="#b99b78" opacity="0.7"/>
+  <rect x="220" y="260" width="760" height="360" rx="12" fill="#f5f1e8"/>
+  <rect x="345" y="215" width="510" height="70" rx="8" fill="#e6d7bc"/>
+  <rect x="280" y="285" width="120" height="305" fill="#d5b58d"/>
+  <rect x="800" y="285" width="120" height="305" fill="#d5b58d"/>
+  <rect x="420" y="285" width="70" height="260" fill="#b98c4f"/>
+  <rect x="710" y="285" width="70" height="260" fill="#b98c4f"/>
+  <rect x="515" y="190" width="170" height="135" fill="#8b5a2b"/>
+  <rect x="548" y="155" width="105" height="55" fill="#c38d4d"/>
+  <path d="M540 325 L660 325 L610 250 Z" fill="#c28c4d"/>
+  <rect x="570" y="330" width="60" height="150" fill="#d4a870"/>
+  <rect x="605" y="330" width="60" height="150" fill="#d4a870"/>
+  <rect x="468" y="445" width="265" height="150" fill="#edd7ad"/>
+  <rect x="540" y="500" width="120" height="95" fill="#a46831"/>
+  <rect x="330" y="470" width="120" height="120" fill="#caa26f"/>
+  <rect x="750" y="470" width="120" height="120" fill="#caa26f"/>
+  <rect x="0" y="620" width="1200" height="180" fill="#dca155" opacity="0.8"/>
+  <text x="600" y="700" text-anchor="middle" font-size="42" font-family="Segoe UI, sans-serif" fill="#4a2b0f" font-weight="700">PALANI MURUGAN TEMPLE</text>
+</svg>
